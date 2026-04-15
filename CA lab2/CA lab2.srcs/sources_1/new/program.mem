@@ -1,0 +1,60 @@
+// _start  (lui sp = 0x2000)
+00002137  // lui sp,0x2
+100002B7  // lui t0,0x10000
+00428293  // addi t0,t0,4
+0002A023  // sw zero,0(t0)
+// INPUT_WAIT
+100002B7  // lui t0,0x10000
+0002A503  // lw a0,0(t0)
+FE050CE3  // beqz a0,INPUT_WAIT
+10000337  // lui t1,0x10000
+00430313  // addi t1,t1,4
+00A32023  // sw a0,0(t1)
+FF810113  // addi sp,sp,-8
+00112223  // sw ra,4(sp)
+00A12023  // sw a0,0(sp)
+010000EF  // jal ra,COUNTDOWN
+00412083  // lw ra,4(sp)
+00810113  // addi sp,sp,8
+FD1FF06F  // j INPUT_WAIT
+// COUNTDOWN
+FF410113  // addi sp,sp,-12
+00112423  // sw ra,8(sp)
+00812223  // sw s0,4(sp)
+00912023  // sw s1,0(sp)
+00050413  // mv s0,a0
+100004B7  // lui s1,0x10000
+00448493  // addi s1,s1,4
+// COUNT_LOOP
+100002B7  // lui t0,0x10000
+00828293  // addi t0,t0,8
+0002A303  // lw t1,0(t0)
+02031663  // bnez t1,COUNT_RESET
+0084A023  // sw s0,0(s1)
+02040663  // beqz s0,COUNT_DONE
+FFC10113  // addi sp,sp,-4
+00A12023  // sw a0,0(sp)
+00000513  // li a0,0
+034000EF  // jal ra,DELAY_1S
+00012503  // lw a0,0(sp)
+00410113  // addi sp,sp,4
+FFF40413  // addi s0,s0,-1
+FCDFF06F  // j COUNT_LOOP
+// COUNT_RESET
+0004A023  // sw zero,0(s1)
+0080006F  // j COUNT_EPILOGUE
+// COUNT_DONE
+0004A023  // sw zero,0(s1)
+// COUNT_EPILOGUE
+00012483  // lw s1,0(sp)
+00412403  // lw s0,4(sp)
+00812083  // lw ra,8(sp)
+00C10113  // addi sp,sp,12
+00008067  // ret
+// DELAY_1S  (DELAY_COUNT=1666666 → 0.5s at 100MHz)
+001973B7  // lui t2,0x197
+E6A38393  // addi t2,t2,-406
+// DELAY_LOOP
+FFF38393  // addi t2,t2,-1
+FE039EE3  // bnez t2,DELAY_LOOP
+00008067  // ret

@@ -1,0 +1,24 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/RegisterFile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RegisterFile
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/alu_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/branchAdder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module branchAdder
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/immGen.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module immGen
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/instructionMemory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module instructionMemory
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/main_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module main_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/pcAdder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pcAdder
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/program_counter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module program_counter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/sevenseg_decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sevenseg_decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Uni/4. CA/CA lab2/CA lab2.srcs/sources_1/new/TopLevelProcessor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TopLevelProcessor
