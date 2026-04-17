@@ -22,7 +22,6 @@
 
 // immGen: handles all RISC-V immediate formats
 // For B-type and J-type: bit[0] is hardcoded 0 (already *2)
-// branchAdder and jumpTarget must NOT shift again
 module immGen (
     input  wire [31:0] instruction,
     output reg  [31:0] imm

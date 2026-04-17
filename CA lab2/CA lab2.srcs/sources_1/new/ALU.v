@@ -25,8 +25,8 @@ module ALU(
     input  wire [31:0] B,
     input  wire [3:0]  ALUControl,
     output reg  [31:0] ALUResult,
-    output wire        Zero,
-    output wire        LessThan    //  for BLT
+    output wire Zero,
+    output wire LessThan //  for BLT
 );
     assign Zero     = (ALUResult == 32'b0);
     assign LessThan = ALUResult[0];  // SLT/SLTI result is 1 or 0 in bit[0]

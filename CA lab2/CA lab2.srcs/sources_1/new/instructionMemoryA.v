@@ -5,7 +5,7 @@
 // 
 // Create Date: 04/01/2026 11:41:24 AM
 // Design Name: 
-// Module Name: instructionMemory
+// Module Name: instructionMemoryA
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,55 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-//module instructionMemory #(
-//    parameter OPERAND_LENGTH = 31
-//)(
-//    input  wire                    clk,
-//    input  wire [OPERAND_LENGTH:0] instAddress,
-//    output reg  [31:0]             instruction
-//);
-//    (* rom_style = "distributed" *)
-//    reg [31:0] memory [0:31];
-//    initial begin
-//        memory[ 0] = 32'hABCDE2B7;  // LUI t0,0xABCDE  *** LUI U-type ***
-//        memory[ 1] = 32'h10000337;  // W1: lui t1,0x10000
-//        memory[ 2] = 32'h00830313;  // addi t1,t1,8
-//        memory[ 3] = 32'h00032383;  // lw t2,0(t1)
-//        memory[ 4] = 32'hFE038AE3;  // beqz t2,W1
-//        memory[ 5] = 32'h00032383;  // X1: lw t2,0(t1)
-//        memory[ 6] = 32'hFE039EE3;  // bnez t2,X1
-//        memory[ 8] = 32'h008E00E7;  // JALR ra,t3,8  *** JALR I-type ***
-//        memory[ 9] = 32'h10000337;  // W2: lui t1,0x10000
-//        memory[10] = 32'h00830313;  // addi t1,t1,8
-//        memory[11] = 32'h00032383;  // lw t2,0(t1)
-//        memory[12] = 32'hFE038AE3;  // beqz t2,W2
-//        memory[13] = 32'h00032383;  // X2: lw t2,0(t1)
-//        memory[14] = 32'hFE039EE3;  // bnez t2,X2
-//        memory[15] = 32'h00300313;  // li t1,3
-//        memory[16] = 32'h00700393;  // li t2,7
-//        memory[17] = 32'h10000EB7;  // W3: lui t4,0x10000
-//        memory[18] = 32'h008E8E93;  // addi t4,t4,8
-//        memory[19] = 32'h000EAF03;  // lw t5,0(t4)
-//        memory[20] = 32'hFE0F0AE3;  // beqz t5,W3
-//        memory[21] = 32'h000EAF03;  // X3: lw t5,0(t4)
-//        memory[22] = 32'hFE0F1EE3;  // bnez t5,X3
-//        memory[23] = 32'h00734463;  // BLT t1,t2,BLT_TAKEN  *** BLT B-type ***
-//        memory[24] = 32'h01C0006F;  // j AFTER_BLT
-//        memory[25] = 32'h10000EB7;  // BLT_TAKEN: lui t4,0x10000
-//        memory[26] = 32'h008E8E93;  // addi t4,t4,8
-//        memory[27] = 32'h000EAF03;  // lw t5,0(t4)
-//        memory[28] = 32'hFE0F0AE3;  // beqz t5,BLT_TAKEN
-//        memory[29] = 32'h000EAF03;  // X4: lw t5,0(t4)
-//        memory[30] = 32'hFE0F1EE3;  // bnez t5,X4
-//        memory[31] = 32'hF85FF06F;  // AFTER_BLT: j _start
-//    end
-//    always @(*) begin
-//        instruction = memory[instAddress[7:2]];
-//    end
-//endmodule
-
-//---- TASK A -----
-module instructionMemory #(
+//---- TASK A ----- 
+module instructionMemoryA #(
     parameter OPERAND_LENGTH = 31
 )(
     input  wire                    clk,
@@ -136,6 +89,30 @@ module instructionMemory #(
         memory[56] = 32'h00008067; // ret
     end
 
+    always @(*) begin
+        instruction = memory[instAddress[9:2]];
+    end
+endmodule
+
+
+// --- Task B --- 
+module instructionMemory #(
+    parameter OPERAND_LENGTH = 31
+)(
+    input  wire clk,
+    input  wire [OPERAND_LENGTH:0] instAddress,
+    output reg  [31:0]  instruction
+);
+    (* rom_style = "distributed" *)
+    reg [31:0] memory [0:5];
+    initial begin
+        memory[0] = 32'h00300413;  // addi s0,zero,3  (s0=3)
+        memory[1] = 32'h00700493;  // addi s1,zero,7  (s1=7)
+        memory[2] = 32'h00944463;  // BLT s0,s1,TAKEN - 3<7 branch taken
+        memory[3] = 32'h00000293;  // addi t0,zero,0  
+        memory[4] = 32'h00100313;  // TAKEN: addi t1,zero,1  
+        memory[5] = 32'hFEDFF06F;  // j _start  loop
+    end
     always @(*) begin
         instruction = memory[instAddress[9:2]];
     end

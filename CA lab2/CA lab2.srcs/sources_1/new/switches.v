@@ -24,23 +24,23 @@ module switches(
     input clk,
     input rst,
     input [31:0] writeData,   // Input Write Data
-    input writeEnable,         // Input Write Enable
-    input readEnable,          // Input Read Enable
-    input [29:0] memAddress,   // Memory Address (unused in this case, but should be connected)
-    input [15:0] sw,           // Input Switches (16 switches for control)
+    input writeEnable, // Input Write Enable
+    input readEnable,  // Input Read Enable 
+    input [29:0] memAddress, // Memory Address (unused in this case, but should be connected)
+    input [15:0] sw, // Input Switches (16 switches for control)
     output reg [31:0] readData, // Output Read Data
-    output reg [15:0] leds      // Output LEDs (connected to FPGA LEDs for display)
+    output reg [15:0] leds // Output LEDs (connected to FPGA LEDs for display)
 );
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             readData <= 0;  // Clear the read data on reset
-            leds <= 0;      // Clear LEDs on reset
+            leds <= 0; // Clear LEDs on reset
         end else begin
-            leds <= sw;     // Map switches to LEDs
+            leds <= sw; // Map switches to LEDs
             if (readEnable)
-                readData <= {16'b0, sw};  // Read the switch values into the lower 16 bits of readData
+                readData <= {16'b0, sw}; // Read the switch values into the lower 16 bits of readData
             else
-                readData <= 0;  // Reset readData if not reading
+                readData <= 0; // Reset readData if not reading
         end
     end
 endmodule

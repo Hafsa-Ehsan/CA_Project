@@ -25,8 +25,7 @@ module branchAdder (
     input  wire [31:0] imm,
     output wire [31:0] branchTarget
 );
-    // immGen already includes the LSB 0 for B-type and J-type.
-    // Do NOT shift again here - just add directly.
+    
     assign branchTarget = PC + imm;
  
 endmodule
